@@ -20,7 +20,8 @@
     "google-translate-api-x": "^10.6.8",
     "mongodb": "^6.3.0",
     "nightmare": "^3.0.2",
-    "uuid": "^9.0.1"
+    "uuid": "^9.0.1",
+    "xvfb": "^0.4.0"
   },
   "devDependencies": {
     "@types/cors": "^2.8.17",

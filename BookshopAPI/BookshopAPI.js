@@ -1,13 +1,15 @@
 const NameOfDatabase = 'Bookshop';
 const SettingsDatabase = 'Settings';
 const GeneralCollection = "AllBooks";
-const ArtSecondhandLiterature = 'ArtSecondhandLiterature';
 const UsersCollection = 'Users';
 
-import { GET } from "./GET/GET.js";
-import { ADD } from "./ADD/ADD.js";
-import { PARSER } from "./PARSER/PARSER.js";
-import { HAS } from "./HAS/HAS.js";
+import { books } from "./books.api.js";
+import { book } from "./book.api.js";
+import { search } from "./search.api.js";
+import { basket } from "./basket.api.js";
+import { user } from "./user.api.js";
+import { news } from "./news.api.js";
+import { comment } from "./comment.api.js";
 
 // const options = {
 //     key: fs.readFileSync("./agent2-key.pem"),
@@ -23,23 +25,13 @@ export function BookshopAPI (settings) {
     const __filename = URL.fileURLToPath(import.meta.url);
     const __dirname = path.dirname(__filename);
 
-    app.use('/BookshopAPI/IMAGE/', express.static(path.join(__dirname, 'data', 'books')));
+    app.use('/BookshopAPI/IMAGES/BOOKS', express.static(path.join(__dirname, 'data', 'images', 'books')));
 
-    PARSER.getLastNews(settings);
-
-    ADD.AddCommentToBook(settings);
-    ADD.AddNewUser(settings);
-
-    HAS.hasNickname(settings);
-
-    GET.getAllBooks(settings);
-    GET.getBook(settings);
-    GET.getBooksByLetter(settings);
-    GET.getBooksBySearch(settings);
-    GET.getAllArtSecondhandLiterature(settings);
-    GET.getOneArtSecondhandLiterature(settings);
-    GET.getBooksFromBasket(settings);
-
-    GET.getUser(settings);
-    
+    books(settings);
+    book(settings);
+    search(settings);
+    basket(settings);
+    user(settings);
+    news(settings);
+    comment(settings);
 }

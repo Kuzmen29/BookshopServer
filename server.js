@@ -7,14 +7,15 @@ import { MongoClient } from "mongodb";
 
 let mongoClient;
 try {
-    mongoClient = new MongoClient("mongodb://kuzmen:!1357%23aDgJ@85.193.80.86:27017/admin");
+    //mongoClient = new MongoClient("mongodb://kuzmen:!1357%23aDgJ@85.193.80.86:27017/admin");
+    mongoClient = new MongoClient("mongodb://127.0.0.1/27017");
 } catch (error) {
     console.log(error.message);
 }
 
 const options = {
     key: fs.readFileSync("./key.pem"),
-    cert: fs.readFileSync("./cert.pem"), 
+    cert: fs.readFileSync("./cert.pem"),
 };
 
 import fs from 'fs';
@@ -36,15 +37,17 @@ app.use(cors())
 app.use(formidable())
 app.use(express.static(__dirname + "/public"));
 
-let settings = {express, app, axios, mongoClient, fs, path, uuidv4, MyPaths, translate, Nightmare, URL }
+let settings = { express, app, axios, mongoClient, fs, path, uuidv4, MyPaths, translate, Nightmare, URL }
 
-//******************************************* ALL my APIs */
+
 import { MyAPIs } from './MyAPIs.js';
 
 MyAPIs(settings);
 
-//*********************************************************
+// var server = https.createServer(options, app).listen(PORT, function () {
+//     console.log("Express server listening on port " + PORT);
+// });
 
-var server = https.createServer(options, app).listen(PORT, function(){
-    console.log("Express server listening on port " + PORT);
-  });
+app.listen(PORT, () => {
+    console.log(`Server start on ${PORT} port!`);
+})
