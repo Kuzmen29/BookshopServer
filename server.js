@@ -7,7 +7,6 @@ import { MongoClient } from "mongodb";
 
 let mongoClient;
 try {
-    //mongoClient = new MongoClient("mongodb://kuzmen:!1357%23aDgJ@85.193.80.86:27017/admin");
     mongoClient = new MongoClient("mongodb://127.0.0.1/27017");
 } catch (error) {
     console.log(error.message);
